@@ -1,3 +1,10 @@
+#quiz, #summary, .alert {
+    display: none;
+}
+
+
+
+
 @media (max-width: 991px) {
 
 }
