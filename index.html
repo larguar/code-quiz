@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.typekit.net/gfq0hzb.css">
 <link rel="stylesheet" href="css/style.css">
     
 </head>
@@ -18,11 +19,11 @@
 	<div class="row">
 		<nav class="col-6">
 			<ul>
-				<li><a href="index.html">Quiz</a></li>
+				<li><a href="index.html" class="active">Quiz</a></li>
 				<li><a href="scores.html">Highscores</a></li>
 			</ul>
 		</nav>
-		<article class="col-6 text-right"><strong>Time:</strong> <span id="time">60</span></article>
+		<article class="col-6 text-right"><div id="timer"><strong>Time:</strong> <span id="time">60</span></div></article>
 	</div>
 </header>
 
@@ -46,11 +47,11 @@
 		<div class="col-12">
 			<h2> </h2>
 			<form>
-				<button id="choice0" type="submit" class="btn btn-primary"> </button>
-				<button id="choice1" type="submit" class="btn btn-primary"> </button>
-				<button id="choice2" type="submit" class="btn btn-primary"> </button>
-				<button id="choice3" type="submit" class="btn btn-primary"> </button>
-				<div class="alert" role="alert"></div>
+				<button id="choice0" type="submit" class="btn"> </button>
+				<button id="choice1" type="submit" class="btn"> </button>
+				<button id="choice2" type="submit" class="btn"> </button>
+				<button id="choice3" type="submit" class="btn"> </button>
+				<div class="alert" role="alert">Wrong! Try Again</div>
 			</form>
 		</div>
 	</article>
@@ -64,8 +65,9 @@
 			<h2>Done!</h2>
 			<p class="lead">Your final score is <span id="score"></span>.</p>
 			<form class="form-inline">
-				<input id="name" class="form-control mb-2 mb-sm-0 mr-sm-2" type="text" placeholder="Enter Name">
+				<input id="name" class="form-control mb-2 mb-sm-0 mr-sm-2" type="text" placeholder="Your Name">
 				<button type="submit" class="btn btn-primary">Submit Score</button>
+				<div class="alert" role="alert">Please enter at least 1 character.</div>
 			</form>
 		</div>
 	</div>

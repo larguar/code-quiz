@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.typekit.net/gfq0hzb.css">
 <link rel="stylesheet" href="css/style.css">
     
 </head>
@@ -16,60 +17,34 @@
 	
 <header class="container-fluid">
 	<div class="row">
-		<nav class="col-12">
+		<nav class="col-6">
 			<ul>
 				<li><a href="index.html">Quiz</a></li>
-				<li><a href="scores.html">Highscores</a></li>
+				<li><a href="scores.html" class="active">Highscores</a></li>
 			</ul>
 		</nav>
+		<article class="col-6 text-right"><div id="timer"><strong>Time:</strong> <span id="time">60</span></div></article>
 	</div>
 </header>
 
-<!-- —————————— Intro Content —————————— -->
 <section id="scores" class="container">
 	<div class="row">
 		<div class="col-12">
 			<h1>High Scores</h1>
-			<ul id="score-list"></ul>
-			<button class="btn btn-primary">Try Again</button>
-			<button class="btn btn-primary">Clear Scores</button>
+			<form id="todo-form" method="POST">
+			<label for="todo-text">Add a Todo:</label>
+				<input type="text" placeholder="What needs to be done?" name="todo-text" id="todo-text" />
+			</form>
+			<p>Todo Count: <span id="todo-count">0</span></p>
+			<ul id="todo-list"></ul>
+
+			<button class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">Try Again</a>
+			<button class="btn btn-secondary">Clear Scores</button>
 		</div>
 	</div>
 </section>
-<!-- —————————— End Intro Content —————————— -->
 
-<!-- —————————— Quiz Questions —————————— -->
-<section id="quiz" class="container">
-	<article id="question" class="row">
-		<div class="col-12">
-			<h2> </h2>
-			<form>
-				<button id="choice0" type="submit" class="btn btn-primary"> </button>
-				<button id="choice1" type="submit" class="btn btn-primary"> </button>
-				<button id="choice2" type="submit" class="btn btn-primary"> </button>
-				<button id="choice3" type="submit" class="btn btn-primary"> </button>
-				<div class="alert" role="alert"></div>
-			</form>
-		</div>
-	</article>
-</section>
-<!-- —————————— End Quiz Questions —————————— -->
-
-<!-- —————————— Quiz Summary —————————— -->
-<section id="summary" class="container">
-	<div class="row">
-		<div class="col-12">
-			<h2>Done!</h2>
-			<p class="lead">Your final score is <span id="score"></span>.</p>
-			<form class="form-inline">
-				<input id="name" class="form-control mb-2 mb-sm-0 mr-sm-2" type="text" placeholder="Enter Name">
-				<button type="submit" class="btn btn-primary">Submit Score</button>
-			</form>
-		</div>
-	</div>
-</section>
-<!-- —————————— End Quiz Summary —————————— -->
-<script src="js/main.js"></script>
+<script src="js/scores.js"></script>
 
 </body>
 </html>

@@ -15,8 +15,6 @@ function startTimer() {
 		deductTime();
 		
 		validation.setAttribute('style', 'display: block;');
-		validation.setAttribute('class', 'alert-danger');
-		validation.textContent = 'Wrong! Try Again';
 	};
 	
 	var timer = setInterval( function() {			
@@ -82,6 +80,8 @@ function startTimer() {
 	];
 	
 	function question1() {		
+		
+		validation.setAttribute('style', 'display: none;');
 					
 		questionOutput.textContent = questions[0].title;
 		buttonOption1.textContent = questions[0].choices[0];
@@ -135,7 +135,9 @@ function startTimer() {
 		
 	};
 	
-	function question2() {		
+	function question2() {	
+		
+		validation.setAttribute('style', 'display: none;');	
 				
 		questionOutput.textContent = questions[1].title;
 		buttonOption1.textContent = questions[1].choices[0];
@@ -189,7 +191,9 @@ function startTimer() {
 		
 	};
 	
-	function question3() {		
+	function question3() {	
+		
+		validation.setAttribute('style', 'display: none;');	
 				
 		questionOutput.textContent = questions[2].title;
 		buttonOption1.textContent = questions[2].choices[0];
@@ -243,7 +247,9 @@ function startTimer() {
 		
 	};
 	
-	function question4() {		
+	function question4() {	
+		
+		validation.setAttribute('style', 'display: none;');	
 		
 		questionOutput.textContent = questions[3].title;
 		buttonOption1.textContent = questions[3].choices[0];
@@ -298,6 +304,8 @@ function startTimer() {
 	};
 	
 	function question5() {	
+		
+		validation.setAttribute('style', 'display: none;');
 		
 		questionOutput.textContent = questions[4].title;
 		buttonOption1.textContent = questions[4].choices[0];
@@ -366,8 +374,14 @@ function startTimer() {
 			
 			var name = document.querySelector('#name').value;
 			
-			localStorage.setItem('name', name);
-			localStorage.setItem('score', score);
+			if (name !== '') {				
+				localStorage.setItem('name', name);
+				localStorage.setItem('score', score);
+				
+				window.location.href = 'scores.html';					
+			} else {
+				document.querySelector('#summary .alert').setAttribute('style', 'display: block;');
+			}
 			
 		});
 		

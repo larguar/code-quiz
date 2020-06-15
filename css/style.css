@@ -1,8 +1,120 @@
 #quiz, #summary, .alert {
     display: none;
 }
+* {
+    -webkit-font-smoothing: antialiased;
+}
+html {
+  	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+body {
+	font-family: proxima-soft, sans-serif;
+	font-weight: 400;
+}
+h1 {
+    font-size: 44px;
+    margin-bottom: 25px;
+    line-height: 1;
+}
+h2 {
+    font-size: 40px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #1e1e1e;
+}
+p.lead {
+    margin-top: -15px;
+    margin-bottom: 16px;
+}
+#main button {
+    margin-top: 10px;
+}
+.alert {
+    padding: 8px 12px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    margin: 0;
+    font-size: 15px;
+}
+
+.container .row {
+    max-width: 560px;
+    margin: 0 auto;
+}
+header {
+    padding: 20px 30px 80px!important;
+}
+header li {
+    display: inline-block;
+    margin-right: 8px;
+}
+header a {
+    color: #777;
+    text-decoration: none!important;
+}
+header a:hover {
+    color: #1e1e1e;
+}
+header a.active {
+    background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(254, 157, 31,0.5) 50%);
+    font-weight: 600;
+    color: #1e1e1e;
+}
+header ul {
+	margin: 0;
+}
 
 
+div#timer {
+    background: #e64259;
+    display: inline-block;
+    border-radius: 3px;
+    width: 80px;
+    text-align: center;
+    color: #fff;
+}
+
+
+.btn {
+    font-weight: 600;
+    color: #fff!important;
+    font-size: 18px;
+    border: none;
+}
+.btn.focus, .btn:focus {
+	box-shadow: none!important;
+}
+#question button {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: left;
+}
+button#choice0 {
+    background: #02cc71;
+}
+button#choice0:hover, button#choice0:focus, button#choice0:active {
+    background: #02b665;
+}
+button#choice1, .btn-primary {
+    background: #5b5bd7;
+}
+button#choice1:hover, button#choice1:focus, button#choice1:active, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:not(:disabled):not(.disabled):active {
+    background: #4242d1;
+}
+button#choice2, .btn-secondary {
+    background: #feab3e;
+}
+button#choice2:hover, button#choice2:focus, button#choice2:active, .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary:not(:disabled):not(.disabled):active {
+    background: #fe9d1f;
+}
+button#choice3 {
+    background: #e64259;
+}
+button#choice3:hover, button#choice3:focus, button#choice3:active {
+    background: #e32740;
+}
 
 
 @media (max-width: 991px) {
@@ -17,3 +129,6 @@
 @media screen and (max-width: 320px) {
 
 }
+
+
+
