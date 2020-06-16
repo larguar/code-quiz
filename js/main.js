@@ -8,6 +8,7 @@ var scoresHTML = document.body.className === 'scores';
 
 // pulls score list <ul>, creates a starter array, and pulls scores from local storage
 var todoList = document.querySelector('#score-list');
+var noScores = document.querySelector('.no-scores');
 var todos = [];
 var storedTodos = JSON.parse(localStorage.getItem('scoreList'));
 if (storedTodos !== null) {
@@ -21,9 +22,6 @@ if (storedTodos !== null) {
 // if scores.html file...
 if (scoresHTML) {
 
-	// !!!!!! HELP !!!!!!!!
-	// Something wrong here – <li> not appending
-
 	for (var i = 0; i < todos.length; i++) {
 		var todo = todos[i];
 
@@ -32,15 +30,17 @@ if (scoresHTML) {
 		li.innerHTML = '<strong style="text-transform: uppercase">' + todo.name + ':</strong> ' + todo.score;
 
 		todoList.appendChild(li);
+		noScores.setAttribute('style', 'display: none');
 	}
 
 	document.querySelector('#scores .btn-secondary').addEventListener('click', function() {
 		todos = [];
 		localStorage.setItem('scoreList', JSON.stringify(todos));
-		todoList.innerHTML = '';
+		todoList.innerHTML = '<li class="no-scores"><strong>No High Scores.</strong> Take the quiz to add your score here.</li>';
 	});
 	
 }
+
 
 
 
