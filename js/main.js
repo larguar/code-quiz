@@ -8,7 +8,7 @@ var scoresHTML = document.body.className === 'scores';
 
 // pulls score list <ul>, creates a starter array, and pulls scores from local storage
 var todoList = document.querySelector('#score-list');
-var todos = ['', ''];
+var todos = [];
 var storedTodos = JSON.parse(localStorage.getItem('scoreList'));
 if (storedTodos !== null) {
 	todos = storedTodos; // if elements are stored, update array with local storage items
@@ -28,11 +28,17 @@ if (scoresHTML) {
 		var todo = todos[i];
 
 		var li = document.createElement('li');
-		li.setAttribute('data-index', i);
-		li.innerHTML = '<strong style="text-transform: uppercase">' + storedTodos.name + ':</strong> ' + storedTodos.score;
+		li.setAttribute('data-index', i)
+		li.innerHTML = '<strong style="text-transform: uppercase">' + todo.name + ':</strong> ' + todo.score;
 
-		todoList.appendChild(li); 
+		todoList.appendChild(li);
 	}
+
+	document.querySelector('#scores .btn-secondary').addEventListener('click', function() {
+		todos = [];
+		localStorage.setItem('scoreList', JSON.stringify(todos));
+		todoList.innerHTML = '';
+	});
 	
 }
 
@@ -490,12 +496,13 @@ function startTimer() {
 			
 			if (name !== '') {	
 				
-				var scoreList = {
+				var newHighScore = {
 				    name: document.querySelector('#name').value,
 				    score: document.querySelector('#time').textContent
 				};
 
-				localStorage.setItem('scoreList', JSON.stringify(scoreList)); // stringify the array and send to local storage							
+				todos.push(newHighScore);
+				localStorage.setItem('scoreList', JSON.stringify(todos)); // stringify the array and send to local storage							
 				window.location.href = 'scores.html'; // redirect to scores.html	
 
 			} else {
