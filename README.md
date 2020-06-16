@@ -21,7 +21,7 @@ You have 60 seconds to answer 5 code-related questions. To move on to the next q
 
 * Quiz works when all answers selected are correct, but there's a propagation issue when an incorrect answer is picked
 * Certain questions apply both the if and else functionality when the correct answer is selected
-* ~~Scores aren't appending on highscores page
-* ~~Clear button isn't functioning yet
+* ~~Scores aren't appending on highscores page~~
+* ~~Clear button isn't functioning yet~~
 * Loops haven't been utilized throughout the code
 * Scores show in order of when they were scored and not by high score to low score
