@@ -1,14 +1,10 @@
 # Coding Quiz
 
-You have 60 seconds to answer 5 code-related questions.
-
-To move on to the next question, you must answer the current question correctly. Your time limit will decrease by 10 seconds every time you answer a question incorrectly.
-
-Your final score is measured by the time it takes to answer all 5 questions.
+You have 60 seconds to answer 5 code-related questions. To move on to the next question, you must answer the current question correctly. Your time limit will decrease by 10 seconds every time you answer a question incorrectly. Your final score is measured by the time it takes to answer all 5 questions.
 
 *Note: This quiz does not function properly yet*
 
-## Current Functionality Highlights
+## Functionality Highlights
 
 ```
 Navigate through a single page to take the quiz
