@@ -108,8 +108,8 @@ function startTimer() {
 	function wrongAnswer() {
 		deductTime();
 			
-		console.log('nooooo');
-		console.log('——————————');
+		//console.log('nooooo');
+		//console.log('——————————');
 		
 		validation.setAttribute('style', 'display: block;');
 	};
@@ -195,8 +195,8 @@ function startTimer() {
 	// Can't figure out how to get questions in a loop
 	// When wrong answer if clicked, else function multiplies
 
-	// question 1
-	function question1() {				
+	// question 1	
+	function question1() {			
 		validation.setAttribute('style', 'display: none;');					
 		questionOutput.textContent = questions[0].title;
 		buttonOption1.textContent = questions[0].choices[0];
@@ -210,42 +210,46 @@ function startTimer() {
 		buttonOption1.addEventListener('click', function(event) {
 			event.preventDefault();
 			
-			if (questions[0].choices[0] === questions[0].answer) {
-				question2();
-			} else {
+			if (questions[0].choices[0] !== questions[0].answer) {
 				wrongAnswer();
-			}			
+				console.log('question 1, button 1');
+			} else {
+				question2();
+			}
 		});
 		
 		buttonOption2.addEventListener('click', function(event) {
 			event.preventDefault();
 			
-			if (questions[0].choices[1] === questions[0].answer) {
-				question2();
-			} else {
+			if (questions[0].choices[1] !== questions[0].answer) {
 				wrongAnswer();
+				console.log('question 1, button 2');
+			} else {
+				question2();
 			}
 		});
 		
 		buttonOption3.addEventListener('click', function(event) {
 			event.preventDefault();
 			
-			if (questions[0].choices[2] === questions[0].answer) {
-				question2();
-			} else {
+			if (questions[0].choices[2] !== questions[0].answer) {
 				wrongAnswer();
+				console.log('question 1, button 3');
+			} else {
+				question2();
 			}
 		});
 		
 		buttonOption4.addEventListener('click', function(event) {
 			event.preventDefault();
 			
-			if (questions[0].choices[3] === questions[0].answer) {
-				question2();
-			} else {
+			if (questions[0].choices[3] !== questions[0].answer) {
 				wrongAnswer();
+				console.log('question 1, button 4');
+			} else {
+				question2();
 			}
-		});		
+		});	
 	};
 	
 	// question 2
@@ -262,6 +266,7 @@ function startTimer() {
 			
 			if (questions[1].choices[0] !== questions[1].answer) {
 				wrongAnswer();
+				console.log('question 2, button 1');
 			} else {
 				question3();
 			}
@@ -272,6 +277,7 @@ function startTimer() {
 			
 			if (questions[1].choices[1] !== questions[1].answer) {
 				wrongAnswer();
+				console.log('question 2, button 2');
 			} else {
 				question3();
 			}
@@ -282,6 +288,7 @@ function startTimer() {
 			
 			if (questions[1].choices[2] !== questions[1].answer) {
 				wrongAnswer();
+				console.log('question 2, button 3');
 			} else {
 				question3();
 			}
@@ -292,6 +299,7 @@ function startTimer() {
 			
 			if (questions[1].choices[3] !== questions[1].answer) {
 				wrongAnswer();
+				console.log('question 2, button 4');
 			} else {
 				question3();
 			}
@@ -312,6 +320,7 @@ function startTimer() {
 			
 			if (questions[2].choices[0] !== questions[2].answer) {
 				wrongAnswer();
+				console.log('question 3, button 1');
 			} else {
 				question4();
 			}
@@ -322,6 +331,7 @@ function startTimer() {
 			
 			if (questions[2].choices[1] !== questions[2].answer) {
 				wrongAnswer();
+				console.log('question 3, button 2');
 			} else {
 				question4();
 			}
@@ -332,6 +342,7 @@ function startTimer() {
 			
 			if (questions[2].choices[2] !== questions[2].answer) {
 				wrongAnswer();
+				console.log('question 3, button 3');
 			} else {
 				question4();
 			}
@@ -342,6 +353,7 @@ function startTimer() {
 			
 			if (questions[2].choices[3] !== questions[2].answer) {
 				wrongAnswer();
+				console.log('question 3, button 4');
 			} else {
 				question4();
 			}
@@ -362,6 +374,7 @@ function startTimer() {
 			
 			if (questions[3].choices[0] !== questions[3].answer) {
 				wrongAnswer();
+				console.log('question 4, button 1');
 			} else {
 				question5();
 			}
@@ -372,6 +385,7 @@ function startTimer() {
 			
 			if (questions[3].choices[1] !== questions[3].answer) {
 				wrongAnswer();
+				console.log('question 4, button 2');
 			} else {
 				question5();
 			}
@@ -382,6 +396,7 @@ function startTimer() {
 			
 			if (questions[3].choices[2] !== questions[3].answer) {
 				wrongAnswer();
+				console.log('question 4, button 3');
 			} else {
 				question5();
 			}
@@ -392,6 +407,7 @@ function startTimer() {
 			
 			if (questions[3].choices[3] !== questions[3].answer) {
 				wrongAnswer();
+				console.log('question 4, button 4');
 			} else {
 				question5();
 			}
@@ -412,6 +428,7 @@ function startTimer() {
 			
 			if (questions[4].choices[0] !== questions[4].answer) {
 				wrongAnswer();
+				console.log('question 5, button 1');
 			} else {
 				summary();
 			}
@@ -422,6 +439,7 @@ function startTimer() {
 			
 			if (questions[4].choices[1] !== questions[4].answer) {
 				wrongAnswer();
+				console.log('question 5, button 2');
 			} else {
 				summary();
 			}
@@ -432,6 +450,7 @@ function startTimer() {
 			
 			if (questions[4].choices[2] !== questions[4].answer) {
 				wrongAnswer();
+				console.log('question 5, button 3');
 			} else {
 				summary();
 			}
@@ -442,6 +461,7 @@ function startTimer() {
 			
 			if (questions[4].choices[3] !== questions[4].answer) {
 				wrongAnswer();
+				console.log('question 5, button 4');
 			} else {
 				summary();
 			}
