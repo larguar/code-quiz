@@ -13,17 +13,17 @@
 <link rel="stylesheet" href="css/style.css">
     
 </head>
-<body>
+<body class="scores">
 	
 <header class="container-fluid">
 	<div class="row">
-		<nav class="col-6">
+		<nav class="col-7">
 			<ul>
 				<li><a href="index.html">Quiz</a></li>
 				<li><a href="scores.html" class="active">Highscores</a></li>
 			</ul>
 		</nav>
-		<article class="col-6 text-right"><div id="timer"><strong>Time:</strong> <span id="time">60</span></div></article>
+		<article class="col-5 text-right"><div id="timer"><strong>Time:</strong> <span id="time">60</span></div></article>
 	</div>
 </header>
 
@@ -31,20 +31,15 @@
 	<div class="row">
 		<div class="col-12">
 			<h1>High Scores</h1>
-			<form id="todo-form" method="POST">
-			<label for="todo-text">Add a Todo:</label>
-				<input type="text" placeholder="What needs to be done?" name="todo-text" id="todo-text" />
-			</form>
-			<p>Todo Count: <span id="todo-count">0</span></p>
-			<ul id="todo-list"></ul>
+			<ul id="score-list"></ul>
 
-			<button class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">Try Again</a>
+			<button class="btn btn-primary mr-2">Try Again</a>
 			<button class="btn btn-secondary">Clear Scores</button>
 		</div>
 	</div>
 </section>
 
-<script src="js/scores.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

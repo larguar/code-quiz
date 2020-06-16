@@ -1,6 +1,4 @@
-#quiz, #summary, .alert {
-    display: none;
-}
+/* —————————— GENERAL —————————— */
 * {
     -webkit-font-smoothing: antialiased;
 }
@@ -18,7 +16,7 @@ h1 {
     line-height: 1;
 }
 h2 {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 1.1;
     margin-bottom: 20px;
     color: #1e1e1e;
@@ -27,23 +25,15 @@ p.lead {
     margin-top: -15px;
     margin-bottom: 16px;
 }
-#main button {
-    margin-top: 10px;
-}
-.alert {
-    padding: 8px 12px;
-    font-weight: 600;
-    letter-spacing: 0.25px;
-    margin: 0;
-    font-size: 15px;
-}
-
 .container .row {
     max-width: 560px;
     margin: 0 auto;
 }
+
+
+/* —————————— HEADER —————————— */
 header {
-    padding: 20px 30px 80px!important;
+    padding: 20px 30px 100px!important;
 }
 header li {
     display: inline-block;
@@ -64,8 +54,6 @@ header a.active {
 header ul {
 	margin: 0;
 }
-
-
 div#timer {
     background: #e64259;
     display: inline-block;
@@ -74,8 +62,42 @@ div#timer {
     text-align: center;
     color: #fff;
 }
+@media screen and (max-width: 575px) {
+    header {
+        padding-bottom: 60px!important;
+    }
+}
 
 
+/* —————————— QUIZ —————————— */
+#quiz, #summary, .alert {
+    display: none;
+}
+#main button {
+    margin-top: 10px;
+}
+.alert {
+    padding: 8px 12px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    margin: 0;
+    font-size: 15px;
+}
+
+
+/* —————————— SCORES —————————— */
+#scores ul {
+    margin-bottom: 20px;
+}
+#scores ul li {
+    background: rgba(0,0,0,0.02);
+    border: 1px solid #ebebeb;
+    margin-bottom: 4px;
+    padding: 8px 12px;
+}
+
+
+/* —————————— BUTTONS —————————— */
 .btn {
     font-weight: 600;
     color: #fff!important;
@@ -115,20 +137,3 @@ button#choice3 {
 button#choice3:hover, button#choice3:focus, button#choice3:active {
     background: #e32740;
 }
-
-
-@media (max-width: 991px) {
-
-}
-@media screen and (max-width:767px) {
-
-}
-@media screen and (max-width: 575px) {
-
-}
-@media screen and (max-width: 320px) {
-
-}
-
-
-
