@@ -1,42 +1,45 @@
-// creates variables for index.html and .scores.html to add page-specific javascript
-var quizHTML = document.body.className === 'quiz';
-var scoresHTML = document.body.className === 'scores';
-
-
-
-
-
 // pulls score list <ul>, creates a starter array, and pulls scores from local storage
-var todoList = document.querySelector('#score-list');
+var ul = document.querySelector('#score-list');
 var noScores = document.querySelector('.no-scores');
-var todos = [];
-var storedTodos = JSON.parse(localStorage.getItem('scoreList'));
-if (storedTodos !== null) {
-	todos = storedTodos; // if elements are stored, update array with local storage items
+var main = document.querySelector('#main'); 
+var quiz = document.querySelector('#quiz');
+var summary = document.querySelector('#summary');
+
+// starts array empty
+var scoresArray = [];
+
+// if elements are stored, update array with local storage items
+var storage = JSON.parse(localStorage.getItem('scoreList'));
+if (storage !== null) {
+	scoresArray = storage;
 }
 
+// sorts array items by score from highest to lowest
+scoresArray.sort(function (a, b) {
+	return parseInt(b.score) - parseInt(a.score);
+});
 
 
 
 
-// if scores.html file...
-if (scoresHTML) {
 
-	for (var i = 0; i < todos.length; i++) {
-		var todo = todos[i];
+if (document.body.className === 'scores') { // if scores.html file...
 
+	// create a <li> for each array item
+	scoresArray.forEach(function(i) {
 		var li = document.createElement('li');
-		li.setAttribute('data-index', i)
-		li.innerHTML = '<strong style="text-transform: uppercase">' + todo.name + ':</strong> ' + todo.score;
+		li.setAttribute('value', i.score);
+		li.innerHTML = '<strong style="text-transform: uppercase">' + i.name + ':</strong> ' + i.score;
 
-		todoList.appendChild(li);
-		noScores.setAttribute('style', 'display: none');
-	}
+		ul.appendChild(li);
+		noScores.setAttribute('style', 'display: none;'); // hide initial "no high scores" message
+	});
 
+	// when clear button is clicked, update array to empty again and store new array in local storage
 	document.querySelector('#scores .btn-secondary').addEventListener('click', function() {
-		todos = [];
-		localStorage.setItem('scoreList', JSON.stringify(todos));
-		todoList.innerHTML = '<li class="no-scores"><strong>No High Scores.</strong> Take the quiz to add your score here.</li>';
+		scoresArray = [];
+		localStorage.setItem('scoreList', JSON.stringify(scoresArray));
+		ul.innerHTML = '<li class="no-scores"><strong>No High Scores.</strong> Take the quiz to add your score here.</li>';
 	});
 	
 }
@@ -45,17 +48,8 @@ if (scoresHTML) {
 
 
 
-// creates variables for #main, #quiz, and #summary
-var main = document.querySelector('#main'); 
-var quiz = document.querySelector('#quiz');
-var summary = document.querySelector('#summary');
-
-
-
-
-
 // if index.html file...
-if (quizHTML) {
+if (document.body.className === 'quiz') {
 	
 	// on #main button click, start the timer and quiz
 	document.querySelector('#main button').addEventListener('click', function(event) {
@@ -114,8 +108,8 @@ function startTimer() {
 	function wrongAnswer() {
 		deductTime();
 			
-		//console.log('nooooo');
-		//console.log('——————————');
+		console.log('nooooo');
+		console.log('——————————');
 		
 		validation.setAttribute('style', 'display: block;');
 	};
@@ -501,8 +495,8 @@ function startTimer() {
 				    score: document.querySelector('#time').textContent
 				};
 
-				todos.push(newHighScore);
-				localStorage.setItem('scoreList', JSON.stringify(todos)); // stringify the array and send to local storage							
+				scoresArray.push(newHighScore);
+				localStorage.setItem('scoreList', JSON.stringify(scoresArray)); // stringify the array and send to local storage							
 				window.location.href = 'scores.html'; // redirect to scores.html	
 
 			} else {
