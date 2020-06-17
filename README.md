@@ -13,6 +13,7 @@ You have 60 seconds to answer 5 code-related questions. To move on to the next q
 * Summary populates your score
 * Submitting your score stores it locally and redirect you to the highscores page
 * Locally stored scores appear in a list on the highscores page
+* Scores are sorted from highest to lowest score
 * Try Again button auto starts the quiz
 * Clear Score button clears all stored scores
 * "No High Scores" message shows if no scores are stored
