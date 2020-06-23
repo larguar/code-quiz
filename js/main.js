@@ -1,15 +1,12 @@
 // pulls score list <ul>, creates a starter array, and pulls scores from local storage
 var ul = document.querySelector('#score-list');
 var noScores = document.querySelector('.no-scores');
-var main = document.querySelector('#main'); 
-var quiz = document.querySelector('#quiz');
-var summary = document.querySelector('#summary');
 
 // starts array empty
 var scoresArray = [];
 
 // if elements are stored, update array with local storage items
-var storage = JSON.parse(localStorage.getItem('scoreList'));
+var storage = JSON.parse(localStorage.getItem('Score List'));
 if (storage !== null) {
 	scoresArray = storage;
 }
@@ -18,10 +15,6 @@ if (storage !== null) {
 scoresArray.sort(function (a, b) {
 	return parseInt(b.score) - parseInt(a.score);
 });
-
-
-
-
 
 if (document.body.className === 'scores') { // if scores.html file...
 
@@ -38,111 +31,25 @@ if (document.body.className === 'scores') { // if scores.html file...
 	// when clear button is clicked, update array to empty again and store new array in local storage
 	document.querySelector('#scores .btn-secondary').addEventListener('click', function() {
 		scoresArray = [];
-		localStorage.setItem('scoreList', JSON.stringify(scoresArray));
+		localStorage.setItem('Score List', JSON.stringify(scoresArray));
 		ul.innerHTML = '<li class="no-scores"><strong>No High Scores.</strong> Take the quiz to add your score here.</li>';
 	});
-	
-}
 
-
-
-
-
-// if index.html file...
-if (document.body.className === 'quiz') {
-	
-	// on #main button click, start the timer and quiz
-	document.querySelector('#main button').addEventListener('click', function(event) {
+	// try again button takes you to index.html#start to auto start the quiz 
+	document.querySelector('.btn-primary').addEventListener('click', function(event) {
 		event.preventDefault();
-		
-		main.setAttribute('style', 'display: none;');
-		quiz.setAttribute('style', 'display: block;');
-		
-		startTimer();	
+		window.location.href = 'index.html#start';
 	});
-	
+
 }
 
-
-
-
-
-// try again button takes you to index.html#start to auto start the quiz 
-document.querySelector('.btn-primary').addEventListener('click', function(event) {
-	event.preventDefault();
-	window.location.href = 'index.html#start';
-});
-
-// if URL includes hash #start, start the timer and quiz
-if (window.location.href === 'file:///Users/lauren/Github/code-quiz/index.html#start' || 
-	window.location.href === 'https://siminski.github.io/code-quiz/index.html#start') {
-		
-	main.setAttribute('style', 'display: none;');
-	quiz.setAttribute('style', 'display: block;');
+if (document.body.className === 'quiz') { // if index.html file...
 	
-	startTimer();
-}
-
-
-
-
-
-// start the quiz and timer
-function startTimer() {
-
-	// pulls quiz alert, countdown #time, and sets time limit for timer
-	var validation = document.querySelector('#question .alert');
-	var time = document.querySelector('#time');
-	var timeLeft = 60;
+	// pull main container div
+	var mainContainer = document.querySelector('#main');
 	
-	// deducts 10 seconds or sets time to 0 if less than 10
-	function deductTime() {			
-		if (timeLeft < 10) {
-			timeLeft = 0;
-		} else {
-			timeLeft = timeLeft - 10;
-		}
-	};
-	
-	// deducts time and shows quiz alert
-	function wrongAnswer() {
-		deductTime();
-			
-		console.log('nooooo');
-		console.log('——————————');
-		
-		validation.setAttribute('style', 'display: block;');
-	};
-	
-	// sets timer interval and outputs current time on page
-	var timer = setInterval( function() {			
-		timeLeft--;
-		time.textContent = timeLeft;
-					
-		if (timeLeft <= 0) {
-			timeLeft = 0;
-			time.textContent = 0;
-			clearInterval(timer);
-		}	
-			
-	}, 1000);
-
-
-
-
-
-	// pulls output for question and buttons
-	var questionOutput = document.querySelector('#question h2');
-	var buttonOption1 = document.querySelector('button#choice0');
-	var buttonOption2 = document.querySelector('button#choice1');
-	var buttonOption3 = document.querySelector('button#choice2');
-	var buttonOption4 = document.querySelector('button#choice3');
-
-	// !!!!!! HELP !!!!!!!!
-	// Commented out questions throwing both if true AND else functions when clicked
-
-	// quiz questions	
-	var questions = [
+	// quiz questions
+	var questionArray = [
 		{
 			title: 'Commonly used data types DO NOT include:',
 			choices: ['strings', 'booleans', 'alerts', 'numbers'],
@@ -153,360 +60,243 @@ function startTimer() {
 			choices: ['quotes', 'curly brackets', 'parentheses', 'square brackets'],
 			answer: 'parentheses'
 		},
-/*
 		{
 			title: 'Arrays in JavaScript can be used to store ____.',
 			choices: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
 			answer: 'all of the above'
-		},
-*/
-		{
-			title: 'Commonly used data types DO NOT include:',
-			choices: ['strings', 'booleans', 'alerts', 'numbers'],
-			answer: 'alerts'
 		},
 		{
 			title: 'String values must be enclosed within ____ when being assigned to variables.',
 			choices: ['commas', 'curly brackets', 'quotes', 'parentheses'],
 			answer: 'quotes'
 		},
-/*
 		{
 			title: 'A very useful tool used during development and debugging for printing content to the debugger is:',
 			choices: ['JavaScript', 'terminal / bash', 'for loops', 'console.log'],
 			answer: 'console.log'
 		}
-*/
-		{
-			title: 'Commonly used data types DO NOT include:',
-			choices: ['strings', 'booleans', 'alerts', 'numbers'],
-			answer: 'alerts'
-		}
 	];
 	
-	// start by showing question 1
-	question1();
+	// create intro <section> and populate content
+	var intro = document.createElement('section');
+	intro.setAttribute('id', 'intro');
+	intro.classList = 'container';
+	intro.innerHTML = '<div class="row"><div class="col-12"><h1>Coding Quiz</h1><p class="lead">You have 60 seconds to answer 5 code-related questions.</p><p>To move on to the next question, you must answer the current question correctly. Your time limit will decrease by 10 seconds every time you answer a question incorrectly.</p><p>Your final score is measured by the time it takes to answer all 5 questions.</p><button class="btn btn-primary btn-lg">Start Quiz</button></div></div>';
 	
-
-
-
-
-	// !!!!!! HELP !!!!!!!!
-	// Can't figure out how to get questions in a loop
-	// When wrong answer if clicked, else function multiplies
-
-	// question 1	
-	function question1() {			
-		validation.setAttribute('style', 'display: none;');					
-		questionOutput.textContent = questions[0].title;
-		buttonOption1.textContent = questions[0].choices[0];
-		buttonOption2.textContent = questions[0].choices[1];
-		buttonOption3.textContent = questions[0].choices[2];
-		buttonOption4.textContent = questions[0].choices[3];
-
-		// !!!!!! HELP !!!!!!!!
-		// Can these buttons be in a loop ??
+	// append intro <section>
+	mainContainer.appendChild(intro);
+	
+	// on intro button click...
+	document.querySelector('#intro .btn').addEventListener('click', function(event) {
+		event.preventDefault();
 		
-		buttonOption1.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[0].choices[0] !== questions[0].answer) {
-				wrongAnswer();
-				console.log('question 1, button 1');
-			} else {
-				question2();
-			}
-		});
+		// create quiz <section>
+		var quiz = document.createElement('section');
+		quiz.setAttribute('id', 'quiz');
+		quiz.classList = 'container';
 		
-		buttonOption2.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[0].choices[1] !== questions[0].answer) {
-				wrongAnswer();
-				console.log('question 1, button 2');
-			} else {
-				question2();
-			}
-		});
+		// append quiz <section>
+		mainContainer.appendChild(quiz);
 		
-		buttonOption3.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[0].choices[2] !== questions[0].answer) {
-				wrongAnswer();
-				console.log('question 1, button 3');
-			} else {
-				question2();
-			}
-		});
+		// hide intro section
+		document.querySelector('#intro').setAttribute('style', 'display: none;');	
 		
-		buttonOption4.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[0].choices[3] !== questions[0].answer) {
-				wrongAnswer();
-				console.log('question 1, button 4');
-			} else {
-				question2();
-			}
-		});	
+		// start the quiz and timer
+		startTimer();
+		
+	});
+	
+}
+	
+function startTimer() {
+
+	// sets time limit for timer
+	var timeLeft = 60;
+	
+	// deducts 10 seconds or sets time to 0 if less than 10
+	function deductTime() {			
+		if (timeLeft < 10) {
+			timeLeft = 0;
+		} else {
+			timeLeft -= 10;
+		}
 	};
 	
-	// question 2
-	function question2() {			
-		validation.setAttribute('style', 'display: none;');					
-		questionOutput.textContent = questions[1].title;
-		buttonOption1.textContent = questions[1].choices[0];
-		buttonOption2.textContent = questions[1].choices[1];
-		buttonOption3.textContent = questions[1].choices[2];
-		buttonOption4.textContent = questions[1].choices[3];
-		
-		buttonOption1.addEventListener('click', function(event) {
-			event.preventDefault();
+	// sets timer interval and outputs current time on page
+	var timer = setInterval(function() {			
+		timeLeft--;
+		time.textContent = timeLeft;
+					
+		if (timeLeft <= 0) {
+			timeLeft = 0;
+			time.textContent = 0;
+			clearInterval(timer);
+			endQuiz();
+		}	
 			
-			if (questions[1].choices[0] !== questions[1].answer) {
-				wrongAnswer();
-				console.log('question 2, button 1');
-			} else {
-				question3();
-			}
-		});
-		
-		buttonOption2.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[1].choices[1] !== questions[1].answer) {
-				wrongAnswer();
-				console.log('question 2, button 2');
-			} else {
-				question3();
-			}
-		});
-		
-		buttonOption3.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[1].choices[2] !== questions[1].answer) {
-				wrongAnswer();
-				console.log('question 2, button 3');
-			} else {
-				question3();
-			}
-		});
-		
-		buttonOption4.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[1].choices[3] !== questions[1].answer) {
-				wrongAnswer();
-				console.log('question 2, button 4');
-			} else {
-				question3();
-			}
-		});	
-	};
+	}, 1000);
 	
-	// question 3
-	function question3() {		
-		validation.setAttribute('style', 'display: none;');					
-		questionOutput.textContent = questions[2].title;
-		buttonOption1.textContent = questions[2].choices[0];
-		buttonOption2.textContent = questions[2].choices[1];
-		buttonOption3.textContent = questions[2].choices[2];
-		buttonOption4.textContent = questions[2].choices[3];
-		
-		buttonOption1.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[2].choices[0] !== questions[2].answer) {
-				wrongAnswer();
-				console.log('question 3, button 1');
-			} else {
-				question4();
-			}
-		});
-		
-		buttonOption2.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[2].choices[1] !== questions[2].answer) {
-				wrongAnswer();
-				console.log('question 3, button 2');
-			} else {
-				question4();
-			}
-		});
-		
-		buttonOption3.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[2].choices[2] !== questions[2].answer) {
-				wrongAnswer();
-				console.log('question 3, button 3');
-			} else {
-				question4();
-			}
-		});
-		
-		buttonOption4.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[2].choices[3] !== questions[2].answer) {
-				wrongAnswer();
-				console.log('question 3, button 4');
-			} else {
-				question4();
-			}
-		});	
-	};
+	// declare start index
+	var questionNumber = 0;
+
+	// populate first question
+	populateQuestion(questionNumber);
 	
-	// question 4
-	function question4() {		
-		validation.setAttribute('style', 'display: none;');			
-		questionOutput.textContent = questions[3].title;
-		buttonOption1.textContent = questions[3].choices[0];
-		buttonOption2.textContent = questions[3].choices[1];
-		buttonOption3.textContent = questions[3].choices[2];
-		buttonOption4.textContent = questions[3].choices[3];
-		
-		buttonOption1.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[3].choices[0] !== questions[3].answer) {
-				wrongAnswer();
-				console.log('question 4, button 1');
-			} else {
-				question5();
-			}
-		});
-		
-		buttonOption2.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[3].choices[1] !== questions[3].answer) {
-				wrongAnswer();
-				console.log('question 4, button 2');
-			} else {
-				question5();
-			}
-		});
-		
-		buttonOption3.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[3].choices[2] !== questions[3].answer) {
-				wrongAnswer();
-				console.log('question 4, button 3');
-			} else {
-				question5();
-			}
-		});
-		
-		buttonOption4.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[3].choices[3] !== questions[3].answer) {
-				wrongAnswer();
-				console.log('question 4, button 4');
-			} else {
-				question5();
-			}
-		});		
-	};
+	// populate question with index...
+	function populateQuestion(index) {
 	
-	// question 5
-	function question5() {			
-		validation.setAttribute('style', 'display: none;');		
-		questionOutput.textContent = questions[4].title;
-		buttonOption1.textContent = questions[4].choices[0];
-		buttonOption2.textContent = questions[4].choices[1];
-		buttonOption3.textContent = questions[4].choices[2];
-		buttonOption4.textContent = questions[4].choices[3];
+		// create <article>
+		var question = document.createElement('article');
+		question.setAttribute('id', 'question-' + index);
+		question.classList = 'question row';	
 		
-		buttonOption1.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[4].choices[0] !== questions[4].answer) {
-				wrongAnswer();
-				console.log('question 5, button 1');
-			} else {
-				summary();
-			}
-		});
+		// create col-12 <div>
+		var col = document.createElement('div');
+		col.classList = 'col-12';
 		
-		buttonOption2.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[4].choices[1] !== questions[4].answer) {
-				wrongAnswer();
-				console.log('question 5, button 2');
-			} else {
-				summary();
-			}
-		});
+		// create <h2> and populate with array title
+		var h2 = document.createElement('h2');
+		h2.textContent = questionArray[index].title;
 		
-		buttonOption3.addEventListener('click', function(event) {
-			event.preventDefault();
-			
-			if (questions[4].choices[2] !== questions[4].answer) {
-				wrongAnswer();
-				console.log('question 5, button 3');
-			} else {
-				summary();
-			}
-		});
+		// create form for buttons
+		var form = document.createElement('form');
+		form.setAttribute('id', 'buttons');
 		
-		buttonOption4.addEventListener('click', function(event) {
-			event.preventDefault();
+		// for each choice in array...
+		questionArray[index].choices.forEach(function(i) {	
 			
-			if (questions[4].choices[3] !== questions[4].answer) {
-				wrongAnswer();
-				console.log('question 5, button 4');
-			} else {
-				summary();
-			}
-		});		
-	};
-	
-
-
-
-
-	// quiz results
-	function summary() {
-		clearInterval(timer);		
-		document.querySelector('#quiz').setAttribute('style', 'display: none;');
-		document.querySelector('#summary').setAttribute('style', 'display: block;');
-		
-		// creates a variable of the new score and outputs it to the summary
-		var newScore = document.querySelector('#time').textContent;
-		document.querySelector('#score').textContent = newScore;	
-		
-		// when submit score button is clicked, then create an object based on the user's name input and score
-		document.querySelector('#summary button').addEventListener('click', function(event) {
-			event.preventDefault();
+			// create <button>	
+			var choice = document.createElement('button');
+			choice.setAttribute('type', 'submit');
+			choice.setAttribute('value', i);
+			choice.classList = 'btn';
+			choice.textContent = i;	
 			
-			var name = document.querySelector('#name').value.trim();
+			// append <button>	
+			form.appendChild(choice);		
 			
-			if (name !== '') {	
+			// on button click...
+			choice.addEventListener('click', function(event) {
+				event.preventDefault();
 				
-				var newHighScore = {
-				    name: document.querySelector('#name').value,
-				    score: document.querySelector('#time').textContent
-				};
-
-				scoresArray.push(newHighScore);
-				localStorage.setItem('scoreList', JSON.stringify(scoresArray)); // stringify the array and send to local storage							
-				window.location.href = 'scores.html'; // redirect to scores.html	
-
-			} else {
-				document.querySelector('#summary .alert').setAttribute('style', 'display: block;'); // throw alert
-			}			
-		});		
+				// if wrong answer is clicked...		
+				if (this.value !== questionArray[questionNumber].answer) {
+					
+					deductTime();
+					alert.setAttribute('style', 'display: block;');	
+					
+					// populate next question after delay	
+					setTimeout(() => {
+						populateNext();
+					}, 400);
+				
+				// if correct answer is clicked...	
+				} else {						
+					populateNext();				
+				}
+			
+			});
+			
+		});
+		 
+		// create alert
+		var alert = document.createElement('div');
+		alert.classList = 'alert';
+		alert.textContent = 'Wrong! Try Again';
+		alert.setAttribute('style', 'display: none;');
+		
+		// append all
+		form.appendChild(alert);
+		col.appendChild(h2);
+		col.appendChild(form);
+		question.appendChild(col);
+		document.querySelector('#quiz').appendChild(question);
+	
 	};
 
+	function populateNext() {		
+			
+		// hide previous question
+		document.querySelector('#question-' + questionNumber).setAttribute('style', 'display: none;');
+		
+		// if index is less than 4		
+		if (questionNumber < 4) {	
+			
+			// populate next question
+			questionNumber++;				
+			populateQuestion(questionNumber);
+			
+		} else {	
+			clearInterval(timer);
+			endQuiz();
+		}
+		
+	}
+
+} // end of startTime function
 	
+function endQuiz() {
+	
+	// hide quiz <section>
+	document.querySelector('#quiz').setAttribute('style', 'display: none;');
+	
+	// grab final score
+	var score = document.querySelector('#time').textContent;
+	score = parseInt(score);
+	
+	// create summary <section> and populate content
+	var summary = document.createElement('section');
+	summary.setAttribute('id', 'summary');
+	summary.classList = 'container';
+	summary.innerHTML = '<div class="row"><div class="col-12"><h2>Done!</h2><p class="lead">Your final score is <span id="score">' + score + '</span>.</p><form class="form-inline"><input id="name" class="form-control mb-2 mb-sm-0 mr-sm-2" type="text" placeholder="Your Name"><button type="submit" class="btn btn-primary">Submit Score</button><div class="alert">Please enter at least 1 character.</div></form></div></div>';
+	
+	// append summary <section>
+	mainContainer.appendChild(summary);
+	
+	// hide summary alert
+	var alert2 = document.querySelector('#summary .alert');
+	alert2.setAttribute('style', 'display: none;');	
+	
+	// when submit score button is clicked, then create an object based on the user's name input and score
+	document.querySelector('#summary button').addEventListener('click', function(event) {
+		event.preventDefault();
+		
+		var name = document.querySelector('#name').value.trim();
+		
+		if (name !== '') {	
+			
+			var newHighScore = {
+			    name: name,
+			    score: score
+			};
 
+			scoresArray.push(newHighScore);
+			localStorage.setItem('Score List', JSON.stringify(scoresArray)); // stringify the array and send to local storage							
+			window.location.href = 'scores.html'; // redirect to scores.html	
 
+		} else {
+			document.querySelector('#summary .alert').setAttribute('style', 'display: block;'); // throw alert
+		}			
+	});
+	
+}
 
-}; // end of startTimer function
+// if URL includes hash #start, start the timer and quiz
+if (window.location.href === 'file:///Users/lauren/Github/code-quiz/index.html#start' || 
+	window.location.href === 'https://siminski.github.io/code-quiz/index.html#start' ||
+	window.location.href === 'file:///Users/lauren/Desktop/Bootcamp/code-quiz/index.html#start') {
+	
+	// create quiz <section>
+	var quiz = document.createElement('section');
+	quiz.setAttribute('id', 'quiz');
+	quiz.classList = 'container';
+	
+	// append quiz <section>
+	mainContainer.appendChild(quiz);
+	
+	// hide intro section
+	document.querySelector('#intro').setAttribute('style', 'display: none;');	
+	
+	// start the quiz and timer
+	startTimer();
+}

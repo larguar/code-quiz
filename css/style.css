@@ -70,10 +70,7 @@ div#timer {
 
 
 /* —————————— QUIZ —————————— */
-#quiz, #summary, .alert {
-    display: none;
-}
-#main button {
+#intro button {
     margin-top: 10px;
 }
 .alert {
@@ -107,33 +104,51 @@ div#timer {
 .btn.focus, .btn:focus {
 	box-shadow: none!important;
 }
-#question button {
+.question button {
     display: block;
     margin-bottom: 5px;
     width: 100%;
     text-align: left;
 }
-button#choice0 {
+#buttons .btn:nth-of-type(1) {
     background: #02cc71;
 }
-button#choice0:hover, button#choice0:focus, button#choice0:active {
+#buttons .btn:nth-of-type(1):hover,
+#buttons .btn:nth-of-type(1):focus,
+#buttons .btn:nth-of-type(1):active {
     background: #02b665;
 }
-button#choice1, .btn-primary {
+#buttons .btn:nth-of-type(2),
+.btn-primary {
     background: #5b5bd7;
 }
-button#choice1:hover, button#choice1:focus, button#choice1:active, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:not(:disabled):not(.disabled):active {
+#buttons .btn:nth-of-type(2):hover,
+#buttons .btn:nth-of-type(2):focus,
+#buttons .btn:nth-of-type(2):active,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:not(:disabled):not(.disabled):active {
     background: #4242d1;
 }
-button#choice2, .btn-secondary {
+#buttons .btn:nth-of-type(3),
+.btn-secondary {
     background: #feab3e;
 }
-button#choice2:hover, button#choice2:focus, button#choice2:active, .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary:not(:disabled):not(.disabled):active {
+#buttons .btn:nth-of-type(3):hover,
+#buttons .btn:nth-of-type(3):focus,
+#buttons .btn:nth-of-type(3):active,
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary:not(:disabled):not(.disabled):active {
     background: #fe9d1f;
 }
-button#choice3 {
+#buttons .btn:nth-of-type(4) {
     background: #e64259;
 }
-button#choice3:hover, button#choice3:focus, button#choice3:active {
+#buttons .btn:nth-of-type(4):hover,
+#buttons .btn:nth-of-type(4):focus,
+#buttons .btn:nth-of-type(4):active {
     background: #e32740;
 }
